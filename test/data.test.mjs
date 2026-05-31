@@ -33,6 +33,21 @@ test("parseInput maps rate limits to fiveHour/weekly", () => {
   assert.deepEqual(c.weekly, { pct: 44, resetsAt: 1738857600 });
 });
 
+test("parseInput rounds fractional percentages", () => {
+  const input = {
+    ...base,
+    context_window: { used_percentage: 53.5, context_window_size: 200000 },
+    rate_limits: {
+      five_hour: { used_percentage: 54.00000001, resets_at: 1738425600 },
+      seven_day: { used_percentage: 56.99999999999999, resets_at: 1738857600 },
+    },
+  };
+  const c = parseInput(input, { now: 1000, branch: null });
+  assert.equal(c.contextPct, 54);
+  assert.equal(c.fiveHour.pct, 54);
+  assert.equal(c.weekly.pct, 57);
+});
+
 test("parseInput returns null limits when absent", () => {
   const c = parseInput({ ...base, rate_limits: {} }, { now: 1, branch: null });
   assert.equal(c.fiveHour, null);

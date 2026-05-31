@@ -1,6 +1,6 @@
 {
   "name": "cyberpunk-hud",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Neon, animated, customizable status line for Claude Code with live 5-hour & weekly usage gauges.",
   "type": "module",
   "bin": { "cyberpunk-hud": "bin/cyberpunk-hud.mjs" },

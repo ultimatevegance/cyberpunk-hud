@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Fix: round context, 5-hour, and weekly usage percentages so the status line shows clean integers (e.g. `57%`) instead of floating-point artifacts like `56.99999999999999%`.
+
 ## 0.1.0
 - Initial release.
 - Single-line neon status line with adaptive (~3fps) animation.
