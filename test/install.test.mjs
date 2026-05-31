@@ -3,8 +3,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { setup, restore, wrapperPath, settingsPath } from "../lib/install.mjs";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 function tmpEnv() {
   const dir = mkdtempSync(join(tmpdir(), "cph-"));
@@ -38,7 +41,8 @@ test("wrapper is valid JS that exits 0 with empty stdin", async () => {
   setup(env);
   const { execFileSync } = await import("node:child_process");
   // Wrapper resolves the renderer from CYBERPUNK_HUD_ROOT (this repo).
-  const root = join(import.meta.dirname, "..");
+  // Use fileURLToPath (not import.meta.dirname, which requires Node 20.11+) to honor engines >=18.
+  const root = join(__dirname, "..");
   const out = execFileSync("node", [wrapperPath(env)], {
     input: "{}", encoding: "utf8",
     env: { ...process.env, NO_COLOR: "1", CYBERPUNK_HUD_ROOT: root, CLAUDE_CONFIG_DIR: env.CLAUDE_CONFIG_DIR },
