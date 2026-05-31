@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cyberpunk-hud",
+  "description": "Cyberpunk neon status line for Claude Code.",
+  "owner": { "name": "ultimatevegance" },
+  "plugins": [
+    {
+      "name": "cyberpunk-hud",
+      "description": "Neon, animated, customizable status line with live 5-hour & weekly usage gauges, themes, and per-element visibility.",
+      "version": "0.1.0",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/ultimatevegance/cyberpunk-hud",
+      "tags": ["statusline", "hud", "cyberpunk", "theme", "usage"]
+    }
+  ],
+  "version": "0.1.0"
+}
