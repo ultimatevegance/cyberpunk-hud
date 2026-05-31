@@ -23,6 +23,9 @@ test("spinner cycles through frames", () => {
   const f1 = spinner(120, 120);
   assert.notEqual(f0, f1);
 });
+test("spinner wraps after a full cycle", () => {
+  assert.equal(spinner(0, 120), spinner(10 * 120, 120)); // 10 = number of spinner frames
+});
 test("glitchOn is deterministic for a given now", () => {
   assert.equal(glitchOn(500, 0), glitchOn(500, 0));
 });

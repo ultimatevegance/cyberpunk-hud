@@ -15,6 +15,12 @@ test("detectMode 256 via TERM", () => {
 test("detectMode explicit override", () => {
   assert.equal(detectMode({ CYBERPUNK_HUD_COLOR: "none" }), "none");
 });
+test("detectMode TERM dumb is none", () => {
+  assert.equal(detectMode({ TERM: "dumb" }), "none");
+});
+test("detectMode defaults to truecolor", () => {
+  assert.equal(detectMode({}), "truecolor");
+});
 test("paint none returns raw text", () => {
   assert.equal(paint([255, 0, 0], "hi", "none"), "hi");
 });
@@ -36,6 +42,5 @@ test("brightness clamps to 255", () => {
   assert.deepEqual(brightness([200, 200, 200], 2), [255, 255, 255]);
 });
 test("rgbTo256 maps pure red into 16..231 range", () => {
-  const v = rgbTo256([255, 0, 0]);
-  assert.ok(v >= 16 && v <= 231);
+  assert.equal(rgbTo256([255, 0, 0]), 196);
 });
