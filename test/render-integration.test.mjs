@@ -2,6 +2,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -12,7 +14,7 @@ function run(payload) {
   return execFileSync("node", [BIN], {
     input: JSON.stringify(payload),
     encoding: "utf8",
-    env: { ...process.env, NO_COLOR: "1", CLAUDE_CONFIG_DIR: __dirname + "/.tmpcfg" },
+    env: { ...process.env, NO_COLOR: "1", CLAUDE_CONFIG_DIR: mkdtempSync(join(tmpdir(), "cph-it-")) },
   });
 }
 

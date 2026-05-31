@@ -60,3 +60,10 @@ test("context bar is 8 cells of block chars", () => {
   const blocks = [...out].filter((ch) => ch === "█" || ch === "░").length;
   assert.equal(blocks, 8);
 });
+test("git marquees a long branch only when active", () => {
+  const long = "feature/a-really-long-branch-name-indeed";
+  const idle = SEGMENTS.git({ ...fullCtx, branch: long }, cfg, kit());
+  assert.ok(idle.includes(long)); // full text when idle
+  const active = SEGMENTS.git({ ...fullCtx, branch: long }, cfg, kit("active"));
+  assert.ok(active.length < ("⎇ " + long).length); // windowed when active
+});

@@ -47,3 +47,7 @@ test("mergeConfig ignores non-object animation without polluting keys", () => {
   assert.ok(!("0" in c.animation));
   assert.equal(c.animation.enabled, true);
 });
+test("mergeConfig coerces non-array segments to defaults", () => {
+  const c = mergeConfig({ segments: "clock" });
+  assert.deepEqual(c.segments, DEFAULTS.segments);
+});

@@ -14,6 +14,7 @@ async function readStdin() {
 }
 
 async function main() {
+  process.stdout.on("error", () => {});
   const argv = process.argv.slice(2);
   if (argv.length > 0) {
     const { runCli } = await import("../lib/cli.mjs");

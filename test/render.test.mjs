@@ -51,3 +51,8 @@ test("disabled animation forces idle mode", () => {
   const line = render(ctx, cfg, { mode: "none" });
   assert.ok(line.length > 0);
 });
+test("width fit never empties the line", () => {
+  const cfg = mergeConfig(null);
+  const line = render(ctx, cfg, { mode: "none", animMode: "idle", columns: 1 });
+  assert.ok(visibleWidth(line) > 0);
+});
