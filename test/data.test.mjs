@@ -70,3 +70,7 @@ test("countdown formats days", () => {
 test("countdown past returns now", () => {
   assert.equal(countdown(1000, 2000 * 1000), "now");
 });
+test("countdown under a minute shows <1m", () => {
+  const now = 1738420000 * 1000;
+  assert.equal(countdown(1738420000 + 30, now), "<1m");
+});

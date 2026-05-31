@@ -42,3 +42,8 @@ test("loadConfig returns defaults when file missing", () => {
   const loaded = loadConfig({ CLAUDE_CONFIG_DIR: dir });
   assert.equal(loaded.theme, "netrun");
 });
+test("mergeConfig ignores non-object animation without polluting keys", () => {
+  const c = mergeConfig({ animation: "on" });
+  assert.ok(!("0" in c.animation));
+  assert.equal(c.animation.enabled, true);
+});
