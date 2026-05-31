@@ -1,0 +1,13 @@
+{
+  "name": "cyberpunk-hud",
+  "version": "0.1.0",
+  "description": "Neon, animated, customizable status line for Claude Code with live 5-hour & weekly usage gauges.",
+  "type": "module",
+  "bin": { "cyberpunk-hud": "bin/cyberpunk-hud.mjs" },
+  "scripts": { "test": "node --test" },
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "keywords": ["claude-code", "statusline", "hud", "cyberpunk", "neon", "theme"],
+  "repository": { "type": "git", "url": "https://github.com/ultimatevegance/cyberpunk-hud.git" },
+  "files": ["bin", "lib", "commands", ".claude-plugin", "README.md", "LICENSE"]
+}
